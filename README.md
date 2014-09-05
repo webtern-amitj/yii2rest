@@ -1,9 +1,9 @@
-##Building a REST API in Yii2.0
+#Building a REST API in Yii2.0
 This is a simple wiki which is useful if you are trying to build a REST API in Yii2.0
 
 Note:This example is based on a table user(id(PK AI),name,age,createdAt,updatedAt)
 
-###1.Action index
+##1.Action index
 
       Request:
                URL: api/user/index
@@ -17,14 +17,15 @@ Note:This example is based on a table user(id(PK AI),name,age,createdAt,updatedA
 	              "order":false,
 	              "filter":{}
 	             }
-```
+
            Note1: "page"=>is the current page number
            Note2: "limit"=>no.of records in a single page
            Note3: "sort"=>sort field(ie this can be id,name,age createdAt or updatedAt)
            Note4: "order"=>This can be true/false. true=>ascending order while false=>descending order
            Note5: filter=>is a json object to pass any filter elements. eg:{name:'abc',age:20} 
+```
            
-     ####Response:
+     ###Response:
 ```javascript
 		     {
 			  "status": 1,
@@ -68,7 +69,7 @@ Note:This example is based on a table user(id(PK AI),name,age,createdAt,updatedA
 			  "totalItems": "8"
 		      }
 ```
-####Action Source code:
+###Action Source code:
 
 ```php
 public function actionIndex()
@@ -173,7 +174,7 @@ private function _getStatusCodeMessage($status)
     return (isset($codes[$status])) ? $codes[$status] : '';
 }	   
 ```
-###2.Action View
+##2.Action View
  
 	       Request:
                URL: api/user/view/30
@@ -181,7 +182,7 @@ private function _getStatusCodeMessage($status)
 	    
            Note1: "30"=>is the Pk of a record in the user table
            
-             ####Response:
+             ###Response:
 ```javascript             
 
 {
@@ -195,7 +196,7 @@ private function _getStatusCodeMessage($status)
       }
 }
 ```			  
-####Action Source code:	
+###Action Source code:	
 
 ```php          
 public function actionView($id)
@@ -219,13 +220,13 @@ protected function findModel($id)
       exit;
     }
 }
-###3.Action Create
+##3.Action Create
  
 	       Request:
 	       
                 URL:  api/user/create
 	     method:POST
-####params:
+###params:
 ```javascript
 	{
 	  "name":"abc",
@@ -233,7 +234,7 @@ protected function findModel($id)
 	}
 ```	
       
-####Response:
+###Response:
 ```javascript
 	  {
 	      "status": 1,
@@ -246,7 +247,7 @@ protected function findModel($id)
 	      }
 	  }
 ```	 
-####Action Source code:	
+###Action Source code:	
      
 ```php     
 public function actionCreate()
@@ -273,7 +274,7 @@ public function actionCreate()
 }
 ```
 
-###4.Action Update
+##4.Action Update
  
 	       Request:
 	       
@@ -285,7 +286,7 @@ public function actionCreate()
                 
 	     method: POST
 	     
-####params:
+###params:
 ```javascript
 	  {
 	    "name":"efg",
@@ -293,7 +294,7 @@ public function actionCreate()
 	  }
 ```		
 	
-####Response:
+###Response:
  ```javascript
 	    {
 		"status": 1,
@@ -306,7 +307,7 @@ public function actionCreate()
 		}
 	    }
  ```	 
-####Action Source code:	
+###Action Source code:	
 ```php
                           
 public function actionUpdate($id)
@@ -332,7 +333,7 @@ public function actionUpdate($id)
 }		
 ```
 
-###5.Action Delete
+##5.Action Delete
  
 	       Request:
 	       
@@ -342,7 +343,7 @@ public function actionUpdate($id)
                 Note1:"32"=>id(PK) of the record we are going to delete
          
 	             
-####Response:
+###Response:
 
 ```javascript
 	  {
@@ -356,7 +357,7 @@ public function actionUpdate($id)
 	      }
 	  }
 ```	  
-####Action Source code:	
+###Action Source code:	
         
 ```php        
 public function actionDelete($id)
@@ -379,7 +380,7 @@ public function actionDelete($id)
 }	
 ```
 
-###6.Action DeleteAll
+##6.Action DeleteAll
   
     Used to delete multiple records at a time.
  
@@ -387,7 +388,7 @@ public function actionDelete($id)
 	       
                 URL: api/user/deleteall
              method:POST
-####params:
+###params:
 ```javascript
 {
   "ids":"[27,28]"
@@ -397,7 +398,7 @@ public function actionDelete($id)
                 Note1:"ids"=>a list of id(Pk)'s to be deleted
          
 	             
-####Response:
+###Response:
 ```javascript
 {
     "status": 1,
@@ -419,7 +420,7 @@ public function actionDelete($id)
     ]
 }
 ```
-####Action Source code:	
+###Action Source code:	
 ```php                          
 public function actionDeleteall()
 {
@@ -445,9 +446,9 @@ public function actionDeleteall()
     echo json_encode(array('status'=>1,'data'=>$data),JSON_PRETTY_PRINT);
 
 }
-php
+```
 			  
-###7.Behaviour to fileter action methods
+##7.Behaviour to fileter action methods
 
 ```php
 public function behaviors()
@@ -495,7 +496,7 @@ public function beforeAction($event)
 }
 ```
 
-####Controller source code:
+###Controller source code:UserController.php
  
 ```php
 	    namespace app\modules\api\controllers;
